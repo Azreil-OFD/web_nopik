@@ -7,80 +7,95 @@
    <title>Nopik</title>
    <script src="https://telegram.org/js/telegram-web-app.js"></script>
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-   <style>
-      body{
-         color: var(--tg-theme-text-color);
-         background: var(--tg-theme-bg-color);
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         font-size: 18px;
-      }
-
-      .hint{
-         color: var(--tg-theme-hint-color);
-      }
-
-      .link{
-         color: var(--tg-theme-link-color);
-      }
-
-      .button{
-         background: var(--tg-theme-button-color);
-         color: var(--tg-theme-button-text-color);
-         border: none;
-         font-size: 18px;
-      }
-
-      .button:not(:last-child){
-         margin-bottom: 20px
-      }
-
-      #usercard{
-         text-align: center;
-      }
-   </style>
+   <link rel="stylesheet" href="style.css" >
 </head>
 
 <body>
+
+  <datalist id="groups">
+    <option value="БУ 1.20"></option>
+    <option value="ВК 1.20"></option>
+    <option value="ВК 1.21"></option>
+    <option value="ВК 1.22"></option>
+    <option value="ВК 1.9"></option>
+    <option value="ДК 1.20"></option>
+    <option value="ДК 1.21"></option>
+    <option value="ДК 1.22"></option>
+    <option value="ДК 2.21"></option>
+    <option value="ИС 1.20"></option>
+    <option value="ИС 1.21"></option>
+    <option value="ИС 1.22"></option>
+    <option value="ИС 1.9"></option>
+    <option value="ИС 2.20"></option>
+    <option value="ИС 2.21"></option>
+    <option value="ИС 2.22"></option>
+    <option value="КП 1.20"></option>
+    <option value="КП 1.21"></option>
+    <option value="КП 1.22"></option>
+    <option value="КП 1.9"></option>
+    <option value="КС 1.20"></option>
+    <option value="МП 1.20"></option>
+    <option value="МП 1.21"></option>
+    <option value="МП 1.22"></option>
+    <option value="МР 1.20"></option>
+    <option value="МР 1.21"></option>
+    <option value="МР 1.22"></option>
+    <option value="МР 1.9"></option>
+    <option value="НГ 1.22"></option>
+    <option value="ПД 1.20"></option>
+    <option value="ПД 1.21"></option>
+    <option value="ПД 1.22"></option>
+    <option value="ПД 1.9"></option>
+    <option value="ПИ 1.20"></option>
+    <option value="ПИ 1.21"></option>
+    <option value="ПИ 1.22"></option>
+    <option value="ПИ 1.9"></option>
+    <option value="ПО 1.21"></option>
+    <option value="ПО 1.22"></option>
+    <option value="РЭ 1.20"></option>
+    <option value="РЭ 1.21"></option>
+    <option value="РЭ 1.22"></option>
+    <option value="РЭ 1.9"></option>
+    <option value="РЭ 2.20"></option>
+    <option value="РЭ 2.21"></option>
+    <option value="РЭ 2.22"></option>
+    <option value="РЭ 2.9"></option>
+    <option value="РЭ 3.20"></option>
+    <option value="РЭ 3.21"></option>
+    <option value="РЭ 3.22"></option>
+    <option value="СВ 1.20"></option>
+    <option value="СВ 1.21"></option>
+    <option value="СВ 1.22"></option>
+    <option value="ТК 1.20"></option>
+    <option value="ТК 1.21"></option>
+    <option value="ТК 1.22"></option>
+    <option value="ТК 1.9"></option>
+    <option value="ТМ 1.20"></option>
+    <option value="ТМ 1.21"></option>
+    <option value="ТМ 1.22"></option>
+    <option value="ТМ 1.9"></option>
+
+  </datalist>
+
    <div id="forms">
    <form>
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Группа</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <label>Группа</label>
+        <input type="text" class="form-control" id="group" list="groups" required>
       </div>
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Дата</label>
-        <input type="date" class="form-control" id="exampleInputPassword1">
+        <label >Дата</label>
+        <input type="date" class="form-control" id="date"  >
       </div>
       <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">На день</label>
+        <input type="checkbox" class="form-check-input" id="dayAndWeek" checked>
+        <label>На день</label>
       </div>
     </form>
    </div>
 </body>
 
-<script>
-   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
-
-   tg.expand(); //расширяем на все окно  
-
-   tg.MainButton.text = "Показать расписание"; //изменяем текст кнопки 
-   tg.MainButton.color = "#143F6B"; //изменяем цвет бэкграунда кнопки
-   tg.MainButton.setParams({"color": "#143F6B"}); //так изменяются все параметры
-   tg.MainButton.show()
-   
-   Telegram.WebApp.onEvent('mainButtonClicked', function(){
-      
-      document.getElementById('forms').innerHTML = "";
-   });
-
-   var c = document.getElementById('exampleCheck1');
-
-   c.onclick = function(e) {
-      alert( document.getElementById('exampleCheck1').textContent );
-   }
+<script src="./app.js">
    
 
 </script>
