@@ -7,21 +7,27 @@ tg.MainButton.color = "#143F6B"; //изменяем цвет бэкграунд�
 tg.MainButton.setParams({"color": "#143F6B"}); //так изменяются все параметры
 tg.MainButton.show()
 
+var day = true;
+
 Telegram.WebApp.onEvent('mainButtonClicked', function(){
-    var group = document.getElementById('group').value
-    var date = document.getElementById('date').value
-    document.getElementById('forms').innerHTML = "";
-});
-
-var dayAndWeek = document.getElementById('dayAndWeek');
-
-dayAndWeek.onclick = function(e) {
-    
     var group = document.getElementById('group').value
     var date = document.getElementById('date').value
     if (group != "") {
         document.getElementById('forms').innerHTML = "тут будет расписание<br/>Для группы:" + group + "<br/>На " + date;
+        if (day) {
+            document.getElementById('forms').innerHTML += 'на день'
+        } else {
+            document.getElementById('forms').innerHTML += 'на неделю'
+        }
     }
+
+});
+
+var dayAndWeek = document.getElementById('dayAndWeek');
+
+dayAndWeek.onclick = function() {
+    
+    day = document.getElementById('dayAndWeek').checked
 
     
 }
