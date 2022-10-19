@@ -2,10 +2,7 @@ let tg = window.Telegram.WebApp; //получаем объект webapp теле
 document.getElementById("date").valueAsDate = new Date();
 tg.expand(); //расширяем на все окно
 
-tg.MainButton.text = "Показать расписание"; //изменяем текст кнопки
-tg.MainButton.color = "#143F6B"; //изменяем цвет бэкграунда кнопки
-tg.MainButton.setParams({ color: "#143F6B" }); //так изменяются все параметры
-tg.MainButton.show();
+
 
 var day = true;
 var dayPicker = (date , group ) => {
@@ -68,6 +65,20 @@ Telegram.WebApp.onEvent("mainButtonClicked", function () {
     }
   }
 });
+
+var rasp = function () {
+    var groupp = document.getElementById("group").value;
+    var datee = document.getElementById("date").value;
+    if (group != "") {
+      if (day) {
+  
+        dayPicker(datee , groupp )
+  
+      } else {
+  
+      }
+    }
+  }
 
 var dayAndWeek = document.getElementById("dayAndWeek");
 
