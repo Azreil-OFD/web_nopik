@@ -8,7 +8,7 @@ tg.MainButton.setParams({ color: "#143F6B" }); //так изменяются в�
 tg.MainButton.show();
 
 var day = true;
-var dayPicker = () => {
+var dayPicker = (date , group ) => {
     const myHeaders = new Headers();
   myHeaders.append("Accept", "application/json");
 
@@ -19,8 +19,8 @@ var dayPicker = () => {
     cache: "default",
   };
 
-  var dates  = new Date(date.value);
-  fetch("http://92.255.107.234:5000/schedule/"+ group.value +"/"+dates.toLocaleDateString('ru')+"/day", myInit).then(
+  var dates  = new Date(date);
+  fetch("http://92.255.107.234:5000/schedule/"+ group +"/"+dates.toLocaleDateString('ru')+"/day", myInit).then(
     (response) => {
 
       response.json().then((e) => {
@@ -56,15 +56,15 @@ var dayPicker = () => {
   );
 }
 Telegram.WebApp.onEvent("mainButtonClicked", function () {
-  var group = document.getElementById("group").value;
-  var date = document.getElementById("date").value;
+  var groupp = document.getElementById("group").value;
+  var datee = document.getElementById("date").value;
   if (group != "") {
     if (day) {
 
-      dayPicker()
+      dayPicker(datee , groupp )
 
     } else {
-      document.getElementById("forms").innerHTML += "на неделю";
+
     }
   }
 });
