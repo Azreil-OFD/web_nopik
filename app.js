@@ -76,5 +76,4 @@ var dayAndWeek = document.getElementById("dayAndWeek");
 
 dayAndWeek.onclick = function () {
   day = document.getElementById("dayAndWeek").checked;
-  dayPicker()
 };
